@@ -19,3 +19,8 @@
   apt:
     name: firefox
     state: present
+
+- name: Install Archive Manager
+  apt:
+    name: file-roller
+    state: present
