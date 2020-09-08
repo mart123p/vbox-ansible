@@ -1,0 +1,13 @@
+#!/bin/sh
+
+xrdb $HOME/.Xresources
+xsetroot -solid grey
+
+xhost +localhost
+autocutsel -fork
+
+# Fix to make GNOME work
+export XKL_XMODMAP_DISABLE=1
+/etc/X11/Xsession
+lxterminal &
+ /usr/bin/lxsession -s LXDE &

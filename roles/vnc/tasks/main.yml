@@ -1,0 +1,38 @@
+- name: Install VNC server
+  apt:
+    name: tightvncserver
+    state: present
+
+- name: Create .vnc directory
+  file:
+    path: /root/.vnc/
+    state: directory
+    recurse: yes
+
+- name: Copy VNC xstartup
+  copy: src=xstartup dest=/root/.vnc/xstartup
+
+- name: Fix permissions on vnc xstartup
+  file:
+    path: /root/.vnc/xstartup
+    state: file
+    mode: +x
+
+- name: Copy VNC passwd
+  copy: src=passwd dest=/root/.vnc/passwd
+
+- name: Fix permissions on vnc passwd
+  file:
+    path: /root/.vnc/passwd
+    state: file
+    mode: '0600'
+
+- name: Create VNC service
+  copy: src=vnc.service dest=/etc/systemd/system/vncserver@:1.service
+
+- name: Enable and start VNC service
+  systemd:
+    daemon_reload: yes
+    name: vncserver@:1.service
+    enabled: yes
+    state: started

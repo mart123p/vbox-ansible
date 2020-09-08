@@ -1,0 +1,9 @@
+---
+- name: Install Virtualbox and VNC on a remote server
+  hosts: all
+  remote_user: root
+
+  roles:
+    - common
+    - vnc
+    - virtualbox
