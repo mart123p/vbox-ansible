@@ -29,10 +29,5 @@
 
 - name: Create VNC service
   copy: src=vnc.service dest=/etc/systemd/system/vncserver@:1.service
-
-- name: Enable and start VNC service
-  systemd:
-    daemon_reload: yes
-    name: vncserver@:1.service
-    enabled: yes
-    state: started
+  notify:
+    - restart vnc
