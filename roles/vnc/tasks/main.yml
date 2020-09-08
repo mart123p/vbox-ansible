@@ -2,6 +2,11 @@
   apt:
     name: tightvncserver
     state: present
+  
+- name: Install autocutsel
+  apt:
+    name: autocutsel
+    state: present
 
 - name: Create .vnc directory
   file:
