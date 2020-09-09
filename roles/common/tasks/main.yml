@@ -15,12 +15,10 @@
     name: lxde-core
     state: present
 
-- name: Install Firefox
-  apt:
-    name: firefox
-    state: present
-
-- name: Install Archive Manager
-  apt:
-    name: file-roller
-    state: present
+- name: Install DevTools
+  apt: name={{ item }} state=present
+  with_items:
+    - firefox
+    - file-roller
+    - terminator
+    - gedit
